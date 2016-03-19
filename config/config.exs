@@ -20,7 +20,7 @@ use Mix.Config
 #
 #     config :logger, level: :info
 #
-config :slackye, slack_token: "xoxb-27833570036-MUgf1Qh6xz0WQ9Yu7dh4GLIc" 
+config :slackye, slack_token: "TOKEN HERE" 
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
