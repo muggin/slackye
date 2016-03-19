@@ -14,4 +14,20 @@ defmodule LyricsLoaderTest do
     expected = ["took", "nothing", "from", "man", "man", "i'm", "own", "man"]
     assert(tokenised == expected, "#{tokenised} != #{expected}")
   end
+
+  test "process_lyrics_with_stop_words" do
+    lyrics = [
+      "Kanye; can I talk to you for a minute?",
+      "Somethin beautiful"
+    ]
+
+    stop_words = ["i", "you"]
+
+    result = LyricsLoader.process_lyrics_with_stop_words(lyrics, stop_words)
+    expected = [
+                ["Kanye; can I talk to you for a minute?","kanye","can","talk","to","for","a","minute"],
+                ["Somethin beautiful", "somethin", "beautiful"]
+              ]
+    assert(result == expected, "Processing failed")
+  end
 end
