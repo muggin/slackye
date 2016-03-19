@@ -1,9 +1,9 @@
 import tweepy as tp
 
-ckey = "CA2Su7GuFNZZEKE6cLBtZ5EL7"
-csecret = "J1EJqq1WcIP00mw0vqpTL8ga0VA7exzgtaqNkTZRpLBQ4qAQEg"
-atoken = "94412971-ticzi7XKR6u6ZmJcKeSFYwR1D3eUYGgJa05OpAOUD"
-asecret = "3pmicSpgrbvv8iiGoJglSEi0ZLDLUBQjZvxhAqhUzuiZk"
+ckey = "CONSUMER KEY HERE"
+csecret = "CONSUMER SECRET HERE"
+atoken = "ACCESS TOKEN HERE"
+asecret = "ACCESS SECRET HERE"
 
 auth = tp.OAuthHandler(ckey, csecret)
 auth.set_access_token(atoken, asecret)
