@@ -9,7 +9,8 @@ defmodule Slackye do
     children = [
       # Define workers and child supervisors to be supervised
       # worker(Slackye.Worker, [arg1, arg2, arg3]),
-      worker(Slackye.Slack, [])
+      worker(Slackye.Slack, []),
+      worker(KanyeWisdom, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

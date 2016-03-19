@@ -14,9 +14,9 @@ defmodule Slackye.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    # [applications: [:logger, :slack],
-    #  mod: {Slackye, []}]
-    [applications: [:logger]]
+     [applications: [:logger, :slack],
+      mod: {Slackye, []}]
+    #[applications: [:logger]]
   end
 
   defp deps do
