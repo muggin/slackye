@@ -14,12 +14,15 @@ defmodule Slackye.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :slack],
-     mod: {Slackye, []}]
+    # [applications: [:logger, :slack],
+    #  mod: {Slackye, []}]
+    [applications: [:logger]]
   end
 
   defp deps do
     [{:slack, "~> 0.4.1"},
-     {:websocket_client, git: "https://github.com/jeremyong/websocket_client"}]
+     {:websocket_client, git: "https://github.com/jeremyong/websocket_client"},
+     {:csv, "~> 1.3.0"}
+    ]
   end
 end
