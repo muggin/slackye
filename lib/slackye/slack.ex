@@ -3,8 +3,15 @@ defmodule Slackye.Slack do
   use Slack
 
   @slack_token Application.get_env(:slackye, :slack_token)
+  defp get_timestamp do
+    date_time = :calendar.universal_time()
+    :calendar.datetime_to_gregorian_seconds(date_time)
+  end
 
-  def start_link, do: start_link(@slack_token, [])
+  def start_link do 
+    fresh_state = %{:last_interrupt => get_timestamp}
+    start_link(@slack_token, fresh_state)
+  end
 
   def handle_connect(slack, state) do
    IO.puts "Connected as #{slack.me.name}"
@@ -18,10 +25,14 @@ defmodule Slackye.Slack do
   end
 
   # user typing notification
-  def handle_message(message=%{type: "user_typing"}, slack, state) do
+  def handle_message(message=%{type: "user_typing"}, slack, state=%{:last_interrupt => last_interrupt}) do
     Logger.debug inspect message
-    message_text = KanyeSay.interrupt("<@#{message.user}>:")
-    send_message(message_text, message.channel, slack)
+    if get_timestamp - last_interrupt > 4 do
+      message_text = KanyeSay.interrupt("<@#{message.user}>:")
+      send_message(message_text, message.channel, slack)
+      state = %{state | :last_interrupt => get_timestamp()}
+    end
+
     {:ok, state}
   end
 
