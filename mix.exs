@@ -22,7 +22,8 @@ defmodule Slackye.Mixfile do
   defp deps do
     [{:slack, "~> 0.4.1"},
      {:websocket_client, git: "https://github.com/jeremyong/websocket_client"},
-     {:csv, "~> 1.3.0"}
+     {:csv, "~> 1.3.0"},
+     {:gibran, "~> 0.0.2"}
     ]
   end
 end
