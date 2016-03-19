@@ -26,6 +26,11 @@ defmodule KanyeWisdom do
     end)
   end
 
+  def find_punchline(query_word) do
+    punchlines = search_punchlines(query_word)
+    if Enum.empty?(punchlines), do: nil, else: Enum.random(punchlines)
+  end
+
   defp load_lyrics do
     stream = LyricsLoader.stream_file("data/lyrics.csv")
     LyricsLoader.listify_first_csv_col(stream)
