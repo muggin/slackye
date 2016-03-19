@@ -28,7 +28,7 @@ defmodule KanyeWisdom do
 
   def search_punchlines(query_words) when is_list(query_words) do
     query_set = MapSet.new(query_words)
-    Agent.get(__MODULE__, fn lyrics ->
+    {quotes, _} = Agent.get(__MODULE__, fn lyrics ->
       Enum.reduce(lyrics, {[], 0}, fn (e, acc) ->
         [punchline | keywords] = e
         {best_punchlines, best_intersection_count} = acc
@@ -49,20 +49,10 @@ defmodule KanyeWisdom do
             {new_list, current_intersection_count}
 
         end
-
-        # if current_intersection_count < best_intersection_count do
-        #   acc
-        # else
-        #   if current_intersection_count == best_intersection_count do
-        #     new_list = best_punchlines ++ [punchline]
-        #     {new_list, current_intersection_count}
-        #   else # current_intersection_count > best_intersection_count
-        #     new_list = [punchline]
-        #     {new_list, current_intersection_count}
-        #   end
-        # end
       end)
     end)
+
+    quotes
   end
 
   def find_punchline(query_word) do
